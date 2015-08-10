@@ -31,9 +31,9 @@ gem 'mini_magick','3.7.0', require: false
 
 # Mongoid 辅助插件
 gem 'mongoid', '4.0.2'
-gem 'mongoid-rails'
 gem 'mongoid_auto_increment_id', '0.6.4'
 gem 'mongoid_rails_migrations', '1.0.0'
+gem 'mongoid_nested_set', github: 'huacnlee/mongoid_nested_set'
 
 # 用户系统
 gem 'devise', '~> 3.5.1'
@@ -105,12 +105,6 @@ gem 'rack-utf8_sanitizer'
 # Mini profiler
 gem 'rack-mini-profiler', require: false
 
-# gem 'newrelic_rpm'
-# gem 'newrelic_moped'
-# gem 'newrelic-grape'
-
-gem 'oneapm_rpm'
-
 group :development, :test do
   gem 'capistrano', '2.9.0', require: false
   gem 'capistrano-unicorn'
@@ -130,3 +124,9 @@ group :development, :test do
   gem 'derailed_benchmarks', github: "schneems/derailed_benchmarks"
 end
 
+group :production do
+  gem 'oneapm_rpm'
+  # gem 'newrelic_rpm'
+  # gem 'newrelic_moped'
+  # gem 'newrelic-grape'
+end

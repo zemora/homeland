@@ -10,6 +10,8 @@ class Reply
   include Mongoid::Mentionable
   include Mongoid::Likeable
 
+  acts_as_nested_set scope: :topic_id
+
   field :body
   field :body_html
 
@@ -49,8 +51,6 @@ class Reply
     end
   end
 
-
-
   after_create do
     Reply.delay.notify_reply_created(self.id)
   end
@@ -72,7 +72,7 @@ class Reply
       Notification::TopicReply.create user_id: topic.user_id, reply_id: reply.id
       notified_user_ids << topic.user_id
     end
-    
+
     follower_ids = topic.follower_ids + (reply.user.try(:follower_ids) || [])
     follower_ids.uniq!
 

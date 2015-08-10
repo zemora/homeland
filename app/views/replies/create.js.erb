@@ -5,11 +5,19 @@
   }
   else {
     var current_floor = parseInt($("#replies").data("last-floor")) + 1;
-    $("#replies .items").append('<%= j(render("reply", reply: @reply, reply_counter: @topic.replies_count - 1, display_edit: true)) %>')
-      .find(".total b").text('<%= @topic.replies_count %>');
-    $("#replies .items .reply:last .reply-floor").text(current_floor + " 楼");
+    var newNode = $('<%= j(render("reply", reply: @reply, reply_counter: @topic.replies_count - 1, display_edit: true)) %>');
+    <% if @reply.parent_id %>
+    if ($(".reply[data-parent-id=<%= @reply.parent_id %>]:last").length > 0) {
+      $(".reply[data-parent-id=<%= @reply.parent_id %>]:last").after(newNode);
+    } else {
+      $(".reply[data-id=<%= @reply.parent_id %>]").after(newNode);
+    }
+    <% else %>
+    $("#replies .items").append(newNode);
+    <% end %>
+    $("#replies .items").find(".total b").text('<%= @topic.replies_count %>');
     $("#replies").data("last-floor", current_floor);
-    $("#replies .reply a.edit:last").css("display","inline-block");
+    newNode.find(".reply-floor").text(current_floor + " 楼");
     _topicView.replyCallback(1,'<%= j(@msg) %>');
   }
 <% else %>

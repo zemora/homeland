@@ -2,7 +2,8 @@
 <%
   floor = reply_counter + 1 + ((@page - 1) * Reply.per_page)
 %>
-<div class="reply<%= ' popular' if reply.popular? %>" id="reply<%= floor %>">
+<div class="reply<%= ' popular' if reply.popular? %> rd<%= [reply.depth || 0,32].min %>"
+  id="reply<%= floor %>" data-id="<%= reply.id %>" data-parent-id="<%= reply.parent_id || 0 %>">
   <% if reply.deleted? and !@show_raw %>
     <div class="deleted text-center"><%= floor %><%= t("common.floor")%> 已删除.</div>
   <% else %>
@@ -13,13 +14,13 @@
           <%= user_name_tag(reply.user) %>
         </span> ·
         <span class="time">
-          <a class="reply-floor" href="#reply<%= floor %>">#<%= floor %></a> · <%= timeago(reply.created_at) %>
+          <%= timeago(reply.created_at) %>
         </span>
         <span class="opts pull-right">
           <% if !reply.deleted? %>
             <%= likeable_tag(reply, cache: true) %>
             <%= link_to('', edit_topic_reply_path(@topic,reply), class: "edit fa fa-pencil", 'data-uid' => reply.user_id, title: "修改回帖")%>
-            <%= link_to('', "#", 'data-floor' => floor, 'data-login' => reply.user_login,
+            <%= link_to('', "#", 'data-floor' => floor, 'data-login' => reply.user_login, 'data-id' => reply.id,
                 title: t("topics.reply_this_floor"), class: "btn-reply fa fa-mail-reply" )
             %>
           <% end %>

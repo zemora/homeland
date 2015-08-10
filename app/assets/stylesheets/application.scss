@@ -627,6 +627,7 @@ a.followed {
 
 #replies {
   margin-bottom: 30px;
+  background-color: #F5F5F5 !important;
   .panel-body {
     padding-top: 0px;
     padding-bottom: 0px;
@@ -641,10 +642,17 @@ a.followed {
       a.edit { display: none; }
     }
   }
+  @for $i from 1 through 32 {
+    .reply.rd#{$i} {
+      margin-left: $i * 20px;
+      border-left: 1px solid #eee;
+    }
+  }
   .reply {
     margin: 0 -15px;
     padding: 10px 15px;
     position: relative;
+    background: #FFF;
     border-bottom: 1px solid #eee;
     padding-left: 74px;
     .infos { min-height: 48px; }

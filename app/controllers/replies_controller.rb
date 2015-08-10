@@ -24,7 +24,7 @@ class RepliesController < ApplicationController
   def update
     @reply = Reply.find(params[:id])
 
-    if @reply.update_attributes(reply_params)
+    if @reply.update_attributes(edit_reply_params)
       redirect_to(topic_path(@reply.topic_id), notice: '回帖更新成功。')
     else
       render action: 'edit'
@@ -47,6 +47,10 @@ class RepliesController < ApplicationController
   end
 
   def reply_params
+    params.require(:reply).permit(:body, :parent_id)
+  end
+
+  def edit_reply_params
     params.require(:reply).permit(:body)
   end
 end

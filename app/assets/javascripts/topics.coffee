@@ -66,15 +66,14 @@ window.TopicView = Backbone.View.extend
   # 回复
   reply: (e) ->
     _el = $(e.target)
+    replyId = _el.data('id')
+    reply = $(".reply[data-id=#{replyId}]");
     floor = _el.data("floor")
     login = _el.data("login")
-    reply_body = $("#new_reply textarea")
-    new_text = "##{floor}楼 @#{login} "
-    if reply_body.val().trim().length == 0
-      new_text += ''
-    else
-      new_text = "\n#{new_text}"
-    reply_body.focus().val(reply_body.val() + new_text)
+    $('.reply-form').remove()
+    newForm = "<div class='reply-form'>#{$('#reply .panel-body').html()}</div>"
+    reply.append(newForm)
+    reply.find("#reply_parent_id").val(replyId)
     return false
 
   # Given floor, calculate which page this floor is in
@@ -118,17 +117,20 @@ window.TopicView = Backbone.View.extend
 
   # Ajax 回复后的事件
   replyCallback : (success, msg) ->
-    $("#main .alert-message").remove()
+    form = $("#reply")
+    if $('.reply-form').length > 0
+      form = $('.reply-form')
+    $(".alert").remove()
     if success
       $("abbr.timeago",$("#replies .reply").last()).timeago()
       $("abbr.timeago",$("#replies .total")).timeago()
-      $("#new_reply textarea").val('')
-      $("#preview").text('')
-      App.notice(msg,'#reply')
+      form.find("textarea").val('')
+      form.find("#preview").text('')
+      $('.reply-form').remove();
     else
-      App.alert(msg,'#reply')
-    $("#new_reply textarea").focus()
-    $('#reply-button').button('reset')
+      App.alert(msg, form)
+    form.find("textarea").focus()
+    form.find('.btn-primary').button('reset')
 
   # 图片点击增加全屏预览功能
   initContentImageZoom : () ->

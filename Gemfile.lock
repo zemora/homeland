@@ -5,6 +5,13 @@ GIT
     doorkeeper-i18n (2.0.0)
 
 GIT
+  remote: git://github.com/huacnlee/mongoid_nested_set.git
+  revision: 7f670b6caab569544b87a874487bad5fb04fde2c
+  specs:
+    mongoid_nested_set (0.3.0)
+      mongoid (>= 4.0.0)
+
+GIT
   remote: git://github.com/schneems/derailed_benchmarks.git
   revision: 36fd32239808ec31f1a08dc1ad28a9c6ee573647
   specs:
@@ -216,8 +223,6 @@ GEM
       moped (~> 2.0.0)
       origin (~> 2.1)
       tzinfo (>= 0.3.37)
-    mongoid-rails (4.0.0)
-      mongoid (~> 4.0)
     mongoid_auto_increment_id (0.6.4)
       mongoid (>= 3.1.0, < 4.1.0)
     mongoid_colored_logger (0.2.4)
@@ -444,9 +449,9 @@ DEPENDENCIES
   message_bus
   mini_magick (= 3.7.0)
   mongoid (= 4.0.2)
-  mongoid-rails
   mongoid_auto_increment_id (= 0.6.4)
   mongoid_colored_logger
+  mongoid_nested_set!
   mongoid_rails_migrations (= 1.0.0)
   nokogiri (= 1.6.5)
   omniauth (~> 1.2.2)
