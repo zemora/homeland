@@ -644,8 +644,12 @@ a.followed {
   }
   @for $i from 1 through 32 {
     .reply.rd#{$i} {
-      margin-left: $i * 20px;
+      margin-left: $i * 32px;
       border-left: 1px solid #eee;
+      padding: 10px;
+      padding-left: 48px;
+      .avatar-48 { width: 24px; height: 24px; }
+      .infos { min-height: 0;}
     }
   }
   .reply {
