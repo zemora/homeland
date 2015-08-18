@@ -15,14 +15,13 @@ gem 'jbuilder'
 gem 'actionpack-action_caching', '1.1.1'
 gem 'rails-i18n'
 gem 'rails_autolink', '>= 1.1.0'
-gem 'md_emoji', '1.0.2'
 gem 'exception_notification'
 
 gem 'doorkeeper'
 gem 'doorkeeper-i18n', github: 'doorkeeper-gem/doorkeeper-i18n'
 
 gem 'rails-perftest'
-gem 'ruby-prof'
+# gem 'ruby-prof'
 
 # 上传组件
 gem 'carrierwave', '~> 0.10.0'
@@ -51,15 +50,14 @@ gem 'omniauth-github', '~> 1.1.0'
 gem 'cancancan', '~> 1.8.4'
 
 gem 'redis', '~> 3.2.1'
-gem 'hiredis', '~> 0.6.0'
 # Redis 命名空间
 gem 'redis-namespace', '~> 1.5.1'
 # 将一些数据存放入 Redis
 gem 'redis-objects', '1.1.0'
 
 # Markdown 格式 & 文本处理
-gem 'redcarpet', '~> 3.2.3'
-gem 'rouge', '~> 1.8.0'
+gem 'kramdown'
+gem 'rouge', '~> 1.9.1'
 gem 'auto-space', '0.0.4'
 gem 'nokogiri', '1.6.5'
 
@@ -89,10 +87,9 @@ gem 'postmark', '0.9.15'
 gem 'postmark-rails', '0.4.1'
 
 # Dalli, kgio is for Dalli
-gem 'kgio'
 gem 'dalli', '2.7.4'
 
-gem 'unicorn', '4.9.0'
+gem 'puma'
 
 gem 'parallel'
 
@@ -120,7 +117,6 @@ group :development, :test do
   gem 'factory_girl_rails', '1.4.0'
   gem 'database_cleaner'
   gem 'capybara', '~> 2.3.0'
-  gem 'api_taster', '0.6.0'
 
   gem 'jasmine-rails', '~> 0.10.2'
   gem 'derailed_benchmarks', github: 'schneems/derailed_benchmarks'
@@ -129,9 +125,6 @@ group :development, :test do
   gem 'colorize'
   gem 'letter_opener'
 
-  gem 'puma'
-
   # Better Errors
   gem 'better_errors'
-  gem 'binding_of_caller'
 end
