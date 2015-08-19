@@ -88,6 +88,7 @@ gem 'postmark-rails', '0.4.1'
 
 # Dalli, kgio is for Dalli
 gem 'dalli', '2.7.4'
+# gem 'jruby-memcached'
 
 gem 'puma'
 
@@ -98,7 +99,7 @@ gem 'rack-cors', require: 'rack/cors'
 gem 'rack-utf8_sanitizer'
 
 # Mini profiler
-gem 'rack-mini-profiler', require: false
+# gem 'rack-mini-profiler', require: false
 
 # gem 'newrelic_rpm'
 # gem 'newrelic_moped'

@@ -82,6 +82,8 @@ class MarkdownConverter
     text = auto_link(text, html: { target: '_blank' })
     @document = Kramdown::Document.new(text, input: 'GFM',
                                              header_offset: 1,
+                                             remove_span_html_tags: true,
+                                             transliterated_header_ids: true,
                                              syntax_highlighter: :rouge)
     @document.to_html
   end
