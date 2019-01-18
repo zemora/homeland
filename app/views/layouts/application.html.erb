@@ -93,5 +93,33 @@
     ga('send', 'pageview');
   </script>
   <div class="zoom-overlay"></div>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({ tex2jax: {inlineMath: [['$','$']]} });
+    $(document).on("turbolinks:load", function() {
+      MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+
+      watchNode("#replies .items");
+      $(".editor-toolbar a.preview").one("click", function() {
+        watchNode("#preview");
+      });
+    });
+    function watchNode(selector) {
+      var targetNode = document.querySelector(selector);
+      if (targetNode == null) {
+        return;
+      }
+      var observer = new MutationObserver(function() {
+        MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+      });
+      observer.observe(targetNode, {childList: true, attributes: false, subtree: false});
+    }
+    $(document).ready(function() {
+      watchNode("#replies .items");
+      $(".editor-toolbar a.preview").one("click", function() {
+        watchNode("#preview");
+      });
+    });
+  </script>
 </body>
 </html>

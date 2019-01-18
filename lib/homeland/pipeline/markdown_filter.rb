@@ -15,7 +15,7 @@ module Homeland
         strikethrough: true,
         underline: true,
         superscript: false,
-        footnotes: false,
+        footnotes: true,
         highlight: false,
         tables: true,
         lax_spacing: true,
